@@ -1,0 +1,28 @@
+connection_points:
+- id: ns:input
+  type: interface
+- id: ns:mgmt
+  type: interface
+descriptor_version: nsd_schema_01
+forwarding_graphs: []
+name: editor_ns
+network_functions:
+- vnf_id: vnf_editor
+  vnf_name: editor_vnf
+  vnf_vendor: sandman
+  vnf_version: '1.0'
+vendor: sandman
+version: '1.0'
+virtual_links:
+- connection_points_reference:
+  - ns:input
+  - vnf_editor:input
+  connectivity_type: E-Line
+  id: ns:input-2-vnf_editor
+- connection_points_reference:
+  - vnf_editor:mgmt
+  - ns:mgmt
+  connectivity_type: E-LAN
+  id: mgmt
+vnf_depedency:
+- sandman:editor_vnf:1.0

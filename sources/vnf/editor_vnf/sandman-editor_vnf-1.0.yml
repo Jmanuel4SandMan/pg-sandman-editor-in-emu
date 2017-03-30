@@ -1,0 +1,35 @@
+connection_points:
+- id: vnf:mgmt
+  type: interface
+- id: vnf:input
+  type: interface
+descriptor_version: vnfd_schema_01
+name: editor_vnf
+vendor: sandman
+version: '1.0'
+virtual_deployment_units:
+- connection_points:
+  - id: vdu1:cp0
+    type: interface
+  - id: vdu1:cp1
+    type: interface
+  id: vdu1
+  resource_requirements:
+    cpu:
+      vcpus: 1
+    memory:
+      size: 500
+      size_unit: MB
+  vm_image: pgsandman2016/upb-son-editor:v1
+  vm_image_format: docker
+virtual_links:
+- connection_points_reference:
+  - vnf:input
+  - vdu1:cp0
+  connectivity_type: E-Line
+  id: input
+- connection_points_reference:
+  - vnf:mgmt
+  - vdu1:cp1
+  connectivity_type: E-LAN
+  id: mgmt
